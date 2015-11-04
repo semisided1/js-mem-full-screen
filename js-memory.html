@@ -2,20 +2,76 @@
     <html>
 <head>
  <title>js-memory</title>
+ <style>
+     html, body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin : 0;
+  padding : 0;
+}
+body {
+  position: relative
+}
+ </style>
 </head>
-<body>
-    <h1>js-memory</h1>
-    <p> source : <a href=" https://github.com/semisided1/js-memory">https://github.com/semisided1/js-memory</a> </p>
-    <p> live : <a href="https://js-memory-semisided1.c9.io/js-memory.html">https://js-memory-semisided1.c9.io/js-memory.html</a></p>
-    <P> javascript with ocanvas demo </P>
-    <p> <a href="https://youtu.be/UAybOgBmUpI">absolute beginner youtube</a></p>
+<body >
+    
+    
+    
 <canvas id="canvas" width="1200" height="700"></canvas>
-<script src="ocanvas/build/dist/latest/ocanvas.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ocanvas/2.8.0/ocanvas.min.js"></script>
 <script>
+
+function request_full_screen() {
+    var
+      el = document.documentElement
+    , rfs =
+           el.requestFullScreen
+        || el.webkitRequestFullScreen
+        || el.mozRequestFullScreen
+    ;
+    rfs.call(el);
+}
+
+
 	
-var canvas = oCanvas.create({ canvas: "#canvas", background: "#000000" });
+	var canvas = oCanvas.create({ canvas: "#canvas", background: "#000000" });
+	
+	var image_full_screen = canvas.display.image({
+    	x:  window.innerWidth,
+        y: window.innerHeight,
+    
+    	width : 30,
+    	height: 30,
+    	opacity: 1,
+    	origin: { x: "right", y: "bottom" },
+    
+    	image: "fullscreen.svg"
+    });
+    
+    image_full_screen.bind("click tap", function() { request_full_screen(); } );
+    canvas.addChild(image_full_screen);
+    
+     
 
-
+        var jscanvas = document.getElementById('canvas');
+        if (jscanvas.getContext) {
+          var ctx = jscanvas.getContext("2d");
+ 
+          window.addEventListener('resize', resizeCanvas, false);
+          window.addEventListener('orientationchange', resizeCanvas, false);
+          resizeCanvas();
+        }
+     
+ 
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        image_full_screen.x = window.innerWidth;
+        image_full_screen.y = window.innerHeight;
+        canvas.redraw();
+      }
+	
 
 var image_base_url = 'https://raw.githubusercontent.com/semisided1/pydoit/master/src/lists/feelings/';
 var img_files = ['boss/boss.png', 'doh/doh.png', 'freezing/freezing.png', 'hot/hot.png',
@@ -106,6 +162,8 @@ function image_clicked(obj_this) {
 }
 
 function rect_clicked(obj_this) {
+
+   
    
     var umf =  get_unmatched_flipped();
    
