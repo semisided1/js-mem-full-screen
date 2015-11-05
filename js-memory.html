@@ -2,26 +2,27 @@
     <html>
 <head>
  <title>js-memory</title>
- <style>
-     html, body {
-  overflow-x: hidden;
-  overflow-y: hidden;
-  margin : 0;
-  padding : 0;
-}
-body {
-  position: relative
-}
+ <meta name="viewport" content="initial-scale=1">
+ <style> 
+ body {
+   overflow-x: hidden; 
+     overflow-y: hidden;
+
+  margin : 0px;
+  padding : 0px;
+  padding-bottom : 0px;
+  position: absolute;
+  left : 0;
+  top: 0;
+  right : 0;
+  bottom : 0;
+  display : block;
+  
+ 
  </style>
 </head>
-<body >
-    
-    
-    
-<canvas id="canvas" width="1200" height="700"></canvas>
-<script src="//cdnjs.cloudflare.com/ajax/libs/ocanvas/2.8.0/ocanvas.min.js"></script>
-<script>
-
+<body ><script src="//cdnjs.cloudflare.com/ajax/libs/ocanvas/2.8.0/ocanvas.min.js"></script><script>
+document.body.innerHTML = "<canvas id='canvas'/>";
 function request_full_screen() {
     var
       el = document.documentElement
@@ -38,8 +39,8 @@ function request_full_screen() {
 	var canvas = oCanvas.create({ canvas: "#canvas", background: "#000000" });
 	
 	var image_full_screen = canvas.display.image({
-    	x:  window.innerWidth,
-        y: window.innerHeight,
+    	x:  document.documentElement.clientWidth - 20 ,
+        y: document.documentElement.clientHeight - 20,
     
     	width : 30,
     	height: 30,
@@ -65,10 +66,20 @@ function request_full_screen() {
      
  
       function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        image_full_screen.x = window.innerWidth;
-        image_full_screen.y = window.innerHeight;
+//          document.documentElement.clientWidth and .clientHeight
+          
+      /*  
+        var element = document.getElementsByName("body")
+    var style = window.getComputedStyle(element);
+    var h = style.getPropertyValue('height');
+        */
+        canvas.width = document.documentElement.clientWidth ;
+        canvas.height = document.documentElement.clientHeight ;
+        image_full_screen.x = document.documentElement.clientWidth ;
+        image_full_screen.y = document.documentElement.clientHeight;
+        
+        
+        
         canvas.redraw();
       }
 	
@@ -259,8 +270,4 @@ for (var i = 0, l = 16; i < l; i++) {
     } 
 
 
-</script>
-
-
-</body>
-</html>
+</script></body></html>
