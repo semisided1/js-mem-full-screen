@@ -18,7 +18,7 @@
   bottom : 0;
   display : block;
   
- 
+ }
  </style>
 </head>
 <body ><script src="//cdnjs.cloudflare.com/ajax/libs/ocanvas/2.8.0/ocanvas.min.js"></script><script>
@@ -89,7 +89,7 @@ var img_files = ['boss/boss.png', 'doh/doh.png', 'freezing/freezing.png', 'hot/h
      'party/party.png', 'relaxed/relaxed.png', 'scared/scared.png', 'whatever/whatever.png'
  ];
 
-var dims = [];
+
 function Card(pos, r, i, f) {
     this.position = pos;
     this.mrect = r;
@@ -99,6 +99,8 @@ function Card(pos, r, i, f) {
 }
 
 var cards = [];
+
+var dims = [];
 for (var i = 0, l = 8; i < l; i++) {
  dims[i] =  { center:75 + ( 130  * i ), top:50 };
  dims[i+8] = { center:75 + (130 * i), top:270 };
@@ -233,8 +235,47 @@ for (var i = 0, l = 16; i < l; i++) {
     canvas.addChild(rectangle);
     
     var ifile = image_base_url + img_files[remixed[i]];
+/*    
+    var sprite_1 = canvas.display.sprite({
+	x: 144,
+	y: 137,
+	image: "img/sprite.png",
+	frames: [
+		{ x: 0, y: 0 },
+		{ x: 80, y: 0 },
+		{ x: 140, y: 0 }
+	],
+	width: 20,
+	height: 20,
+	frame: 1
+});
+
+var sprite_2 = sprite_1.clone({
+	x: 167,
+	frame: 2
+});
+var sprite_3 = sprite_1.clone({
+	x: 190,
+	frame: 3
+});
+
+canvas.addChild(sprite_1);
+canvas.addChild(sprite_2);
+canvas.addChild(sprite_3);
+*/
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   
-    var image_to_add = canvas.display.image({
+    var image_to_add = canvas.display.sprite({
     	x:1, // mumble mumbe groan
     	y: 1,
     	width : 10,
@@ -242,6 +283,12 @@ for (var i = 0, l = 16; i < l; i++) {
     	opacity: 0,
     	origin: { x: "center", y: "top" },
     	image: ifile,
+        frames: [
+		    { x: 0, y: 0 },
+		    { x: 20, y: 20  },
+	],
+	frame: 2
+    	
     });
     
    canvas.addChild(image_to_add);
@@ -269,5 +316,15 @@ for (var i = 0, l = 16; i < l; i++) {
         return null;
     } 
 
+    function are_all_cards_onscreen() {
+        for(var i=0; i<cards.length; i++) {
+            
+        }
+        return null;
+    } 
 
+    function is_card_onscreen(c) {
+    /*    if c.rectangle.b    canvas.width 
+        canvas.height  */
+    }
 </script></body></html>
